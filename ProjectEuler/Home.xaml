@@ -18,6 +18,9 @@
             <StackPanel Orientation="Horizontal">
                 <TextBox Name="Solution" Text="Solution" />
             </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <Label Content="" Name="SpeedTimer" Visibility="Collapsed" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

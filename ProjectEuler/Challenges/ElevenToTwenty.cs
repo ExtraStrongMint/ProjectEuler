@@ -187,7 +187,7 @@ namespace ProjectEuler.Challenges
         }
         private static long Fifteen()
         {
-
+            return 0;
         }
     }
 }
