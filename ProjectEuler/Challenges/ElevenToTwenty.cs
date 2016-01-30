@@ -26,7 +26,7 @@ namespace ProjectEuler.Challenges
                 case 16:
                     return Sixteen();
                 case 17:
-                    break;
+                    return Seventeen();
                 case 18:
                     break;
                 case 19:
@@ -199,8 +199,6 @@ namespace ProjectEuler.Challenges
         }
         private static long Sixteen()
         {
-            double x = 2;
-            double y = 15;
             BigInteger result = (BigInteger)Math.Pow(2, 1000);
 
             char[] charArray = result.ToString().ToCharArray();
@@ -211,6 +209,71 @@ namespace ProjectEuler.Challenges
                 total += (long)Char.GetNumericValue(c);
             }
             return total;
+        }
+        private static long Seventeen()
+        {
+            Dictionary<int, string> digits = new Dictionary<int, string>()
+            {
+                { 1, "one" }, { 2, "two" }, { 3, "three" }, { 4, "four" }, { 5, "five" },
+                { 6, "six" }, { 7, "seven" }, { 8, "eight" }, { 9, "nine" }, { 10, "ten" },
+                { 11, "eleven" }, { 12, "twelve" }, { 13, "thirteen" }, { 14, "fourteen" }, { 15, "fifteen" },
+                { 16, "sixteen" }, { 17, "seventeen" }, { 18, "eighteen" }, { 19, "nineteen" },
+            };
+
+            Dictionary<int, string> tens = new Dictionary<int, string>()
+            {
+                { 20, "twenty" }, { 30, "thirty" }, { 40, "forty" }, { 50, "fifty" },
+                { 60, "sixty" }, { 70, "seventy" }, { 80, "eighty" }, { 90, "ninety" },
+            };
+            Dictionary<int, string> hundreds = new Dictionary<int, string>()
+            {
+                {100, "onehundred" }, {200, "twohundred" }, {300, "threehundred" }, {400,"fourhundred" },
+                {500, "fivehundred" }, {600, "sixhundred" }, {700,"sevenhundred" }, {800,"eighthundred" },
+                {900,"ninehundred" }
+            };
+
+            string lowest = "";
+
+            // No real pattern here but calculate it anyway.
+            for (int i = 1; i<= 19;i++) { lowest += digits[i]; }
+            long LOWEST_LEN = lowest.Length;
+
+            // Middle bunch, 20-99
+            string mid = "";
+            for (int i = 20; i <= 90; i += 10)
+            {
+                mid += tens[i];
+                for (int j = 1; j<= 9;j++)
+                {
+                    mid += tens[i]+digits[j];
+                }
+            }
+            long MID_LEN = mid.Length + LOWEST_LEN;
+
+            // Hundreds
+            string higher = "";
+            for (int i = 100; i <= 900; i+=100)
+            {
+                higher += hundreds[i];
+                for (int j = 1; j <= 19; j++)
+                {
+                    higher += hundreds[i]+"and" + digits[j]; // (x)00-(x)19
+                }
+                for (int k = 20; k <= 90; k += 10)
+                {
+                    higher += hundreds[i]+"and"+tens[k]; // (x)(y)0 ++
+                    for (int l = 1; l <= 9; l++)
+                    {
+                        higher += hundreds[i]+"and"+tens[k]+digits[l]; // other digits
+                    }
+                }
+            }
+
+            long HIGHER_LEN = higher.Length + MID_LEN + "onethousand".Length; // add onethousand at the end
+
+            return HIGHER_LEN;
+
+
         }
     }
 }
