@@ -22,7 +22,7 @@ namespace ProjectEuler.Challenges
                 case 14:
                     return Fourteen();
                 case 15:
-                    break;
+                    return Fifteen();
                 case 16:
                     break;
                 case 17:
@@ -34,9 +34,9 @@ namespace ProjectEuler.Challenges
                 case 20:
                     break;
                 default:
-                    return null;
+                    return "unknown";
             }
-            return null;
+            return "Unknown";
         }
 
         private static long Eleven()
@@ -187,7 +187,15 @@ namespace ProjectEuler.Challenges
         }
         private static long Fifteen()
         {
-            return 0;
+            const int LIMIT = 20;
+            long count = 1;
+
+            for (int i = 0; i < LIMIT; i++)
+            {
+                count *= (2 * LIMIT) - i;
+                count /= i + 1;
+            }
+            return count;
         }
     }
 }

@@ -31,6 +31,21 @@ namespace ProjectEuler
 
             return data;
         }
+        public static int Factorial(int number)
+        {
+            return (int)Factorial((long)number);
+        }
+        public static long Factorial(long number)
+        {
+            long fv = 1;
+            while (number > 1)
+            {
+                fv *= number;
+                number--;
+            }
+            return fv;
+
+        }
         public static List<long> GetFactors(long number)
         {
             List<long> ret = new List<long>();
