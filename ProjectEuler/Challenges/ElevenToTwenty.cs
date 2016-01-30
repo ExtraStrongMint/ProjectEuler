@@ -24,7 +24,7 @@ namespace ProjectEuler.Challenges
                 case 15:
                     return Fifteen();
                 case 16:
-                    break;
+                    return Sixteen();
                 case 17:
                     break;
                 case 18:
@@ -196,6 +196,21 @@ namespace ProjectEuler.Challenges
                 count /= i + 1;
             }
             return count;
+        }
+        private static long Sixteen()
+        {
+            double x = 2;
+            double y = 15;
+            BigInteger result = (BigInteger)Math.Pow(2, 1000);
+
+            char[] charArray = result.ToString().ToCharArray();
+
+            long total = 0;
+            foreach (char c in charArray)
+            {
+                total += (long)Char.GetNumericValue(c);
+            }
+            return total;
         }
     }
 }
