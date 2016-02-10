@@ -28,8 +28,10 @@ namespace ProjectEuler.Challenges
                 case 17:
                     return Seventeen();
                 case 18:
+                    return Eighteen();
                     break;
                 case 19:
+                    return Nineteen();
                     break;
                 case 20:
                     break;
@@ -274,6 +276,54 @@ namespace ProjectEuler.Challenges
             return HIGHER_LEN;
 
 
+        }
+        private static long Eighteen()
+        {
+            const string FILENAME = @"..\..\Data\Eighteen.txt";
+
+            List<string> lines = Utils.ReadFile(FILENAME);
+
+            List<int[]> iv = new List<int[]>();
+
+            int[][] num_array = new int[lines.Count][];
+
+            int count = 0;
+            foreach (string line in lines)
+            {
+                int[] numbers = line.Split(' ').Select(x => Convert.ToInt32(x)).ToArray();
+                num_array[count] = numbers;
+                count++;
+            }
+
+            for (int i = num_array.Length - 2; i >= 0; i--) // start on the penultimate row
+            {
+                for (int idx = 0; idx < num_array[i].Length; idx++) 
+                {
+                    int current = num_array[i][idx];
+                    int next_line_current = num_array[i + 1][idx];
+                    int next_line_next = num_array[i + 1][idx + 1];
+
+                    int highest = Math.Max(current + next_line_current, current + next_line_next);
+                    num_array[i][idx] = highest;
+                }
+            }
+            return (long)num_array[0][0];
+        }
+        private static long Nineteen()
+        {
+
+            // Could be faster in foreach I guess but doesn't matter.
+            DateTime dt = new DateTime(1901, 01, 01);
+            long ret = 0;
+            do
+            {
+                if (dt.Day == 1 && dt.DayOfWeek == DayOfWeek.Sunday)
+                    ret++;
+                dt = dt.AddDays(1);
+            }
+            while (dt < new DateTime(2000, 12, 2)); // only need to go as far as 2nd dec
+
+            return ret;
         }
     }
 }
