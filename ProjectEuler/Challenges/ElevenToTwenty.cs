@@ -29,16 +29,13 @@ namespace ProjectEuler.Challenges
                     return Seventeen();
                 case 18:
                     return Eighteen();
-                    break;
                 case 19:
                     return Nineteen();
-                    break;
                 case 20:
-                    break;
+                    return Twenty();
                 default:
                     return "unknown";
             }
-            return "Unknown";
         }
 
         private static long Eleven()
@@ -324,6 +321,16 @@ namespace ProjectEuler.Challenges
             while (dt < new DateTime(2000, 12, 2)); // only need to go as far as 2nd dec
 
             return ret;
+        }
+        private static long Twenty()
+        {
+            BigInteger x = Utils.Factorial((BigInteger)100);
+            long result = 0;
+            foreach (char c in x.ToString().ToCharArray())
+            {
+                result += (long)char.GetNumericValue(c);
+            }
+            return result;
         }
     }
 }

@@ -34,7 +34,10 @@ namespace ProjectEuler
 
         void PopulateComboItems()
         {
-            int[] challenges = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+            int[] challenges = new int[] {
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+                21, 22, 23, 24, 25, 26, 27, 28, 29, 30
+            };
 
             ChallengeSelector.ItemsSource = challenges;
         }
@@ -48,6 +51,8 @@ namespace ProjectEuler
                 Solution.Text = OneToTen.Solution(selected).ToString();
             if (selected > 10 && selected <= 20)
                 Solution.Text = ElevenToTwenty.Solution(selected).ToString();
+            if (selected > 20 && selected <= 30)
+                Solution.Text = TwentyOneToThirty.Solution(selected).ToString();
             _timer.Stop();
             SpeedTimer.Content = string.Format("Time Taken: {0}ms", _timer.ElapsedMilliseconds);
             SpeedTimer.Visibility = Visibility.Visible;

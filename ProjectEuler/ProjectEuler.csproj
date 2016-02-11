@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Challenges\ElevenToTwenty.cs" />
+    <Compile Include="Challenges\TwentyOneToThirty.cs" />
     <Compile Include="Utils.cs" />
     <Page Include="Home.xaml">
       <SubType>Designer</SubType>
@@ -111,6 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Eighteen.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\TwentyTwo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

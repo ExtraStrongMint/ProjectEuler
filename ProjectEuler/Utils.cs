@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,6 +31,16 @@ namespace ProjectEuler
             }
 
             return data;
+        }
+        public static BigInteger Factorial(BigInteger number)
+        {
+            BigInteger fv = 1;
+            while (number > 1)
+            {
+                fv *= number;
+                number--;
+            }
+            return fv;
         }
         public static int Factorial(int number)
         {
